@@ -1,6 +1,6 @@
 #!/bin/sh
 #SBATCH --job-name=fmriprep    # Job name
-#SBATCH --array=1-176%3
+#SBATCH --array=1-177%3
 #SBATCH --ntasks=1         # Run on a single CPU
 #SBATCH --time=02:00:00  # Time limit hrs:min:sec
 #SBATCH -o log/%x-%A-%a.out
@@ -61,7 +61,7 @@ then
     echo "$subject" >> $HOME/log/failed_subjects.${SLURM_ARRAY_JOB_ID}
     echo "${SLURM_ARRAY_TASK_ID}" >> $HOME/log/failed_taskids.${SLURM_ARRAY_JOB_ID}
 else
-	scp -r $OUT_DIR/$subject/ nabarun@10.36.17.186:"/media/varsha/Seagate\ Backup\ Plus\ Drive/MRI_DEVARAJAR/RADC_Dicom/fmriprep/"
+	scp -r $OUT_DIR/$subject/ nabarun@10.36.17.186:"/media/varsha/Seagate\ Backup\ Plus\ Drive/MRI_DEVARAJAR/RADC_Dicom/fmriprep_uc/"
 fi
 
 rm -rf $OUT_DIR/$subject/
